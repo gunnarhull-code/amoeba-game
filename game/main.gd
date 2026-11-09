@@ -13,9 +13,9 @@ const ZOOM_START := 1.2
 const ZOOM_PER_STAGE := 0.9
 const MIX := 22050.0
 ## The notes that play, in order, as you eat things (and on stage-ups). Type note names
-## separated by spaces, like "C4 D4 E4 G4 A4". Sharps: "F#4", flats: "Bb3". Octave 4 = middle.
+## separated by spaces, like "A3 B3 C4 E4 F4" (the hirajoshi scale, the current default). Sharps: "F#4", flats: "Bb3". Octave 4 = middle.
 ## Select the Main node in main.tscn to change it in the Inspector.
-@export var eat_notes := "C4 D4 E4 G4 A4"
+@export var eat_notes := "A3 B3 C4 E4 F4 A4 F4 E4 C4 B3"
 var scale_hz: Array[float] = []
 const CONTROL_NAMES := ["Arrow keys", "Joystick", "Mouse", "Quit"]
 var keys_needed := 3
