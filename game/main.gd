@@ -17,6 +17,11 @@ const MIX := 22050.0
 ## Select the Main node in main.tscn to change it in the Inspector.
 @export var eat_notes := "A3 B3 C4 E4 F4 A4 F4 E4 C4 B3"
 var scale_hz: Array[float] = []
+## Background music, looped on every level. Drag any .mp3 / .ogg / .wav from the FileSystem dock here.
+@export var music: AudioStream = preload("res://music/hirajoshi_shimmer.mp3")
+## Music loudness in decibels (0 = full, -10 = quieter, -80 = silent).
+@export_range(-80.0, 6.0) var music_volume_db := -12.0
+var music_player: AudioStreamPlayer
 const CONTROL_NAMES := ["Arrow keys", "Joystick", "Mouse", "Quit"]
 var keys_needed := 3
 var keys_total := 0          # keys placed in this level (0 = no key gate)
@@ -297,6 +302,14 @@ func _ready() -> void:
 	layer.add_child(red_vig)
 	layer.move_child(red_vig, 1)
 	scale_hz = parse_notes(eat_notes)
+	if music != null:
+		if "loop" in music:
+			music.loop = true  # keeps going level after level, never restarts on a reset
+		music_player = AudioStreamPlayer.new()
+		music_player.stream = music
+		music_player.volume_db = music_volume_db
+		add_child(music_player)
+		music_player.play()
 	if OS.get_environment("AMOEBA_ABIL") != "":
 		ab_test = int(OS.get_environment("AMOEBA_ABIL"))
 	prof_on = OS.get_environment("AMOEBA_PROF") != ""
