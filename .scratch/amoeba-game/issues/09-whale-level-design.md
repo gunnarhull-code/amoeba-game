@@ -10,3 +10,7 @@ Design the whale level in full:
 - Krill-school spawn/gather timing, and how it competes with whale predation — how does the player time harvesting without being constantly eaten?
 - The mechanic for deliberately getting swallowed once big enough — is it automatic on size+proximity, or triggered by an active Ability?
 - What happens once inside the whale — is the golden Orb immediately accessible, are there hazards, how does the player exit or complete the level?
+
+## Notes
+
+The whale-Class silhouette is modeled on Bursaria truncatella (bag-shaped ciliate with a deep oral funnel that swallows prey whole) — see map Decisions so far. Use the oral cavity as the swallow entrance and the likely Orb location.

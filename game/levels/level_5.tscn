@@ -1,0 +1,1010 @@
+[gd_scene load_steps=13 format=3]
+
+[ext_resource type="Script" path="res://level_def.gd" id="1"]
+[ext_resource type="Script" path="res://level_marker.gd" id="2"]
+[ext_resource type="Script" path="res://current_path.gd" id="3"]
+
+[sub_resource type="Curve2D" id="Curve_0"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1200, 6600, -440, 88, 440, -88, 2400, 5900, -418, 66, 418, -66, 3200, 6200, -396, 330, 396, -330, 4300, 5600, -462, 154, 462, -154, 5000, 4700, -550, 88, 550, -88, 6400, 4900, -418, 330, 418, -330, 7500, 4300, -484, 132, 484, -132, 8300, 3400, -572, 88, 572, -88, 9700, 3700, -440, 352, 440, -352, 10900, 3000, -308, 286, 308, -286, 11700, 2100, 0, 0, 0, 0, 12300, 1700),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 12
+
+[sub_resource type="Curve2D" id="Curve_1"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 5000, 4500, -66, 396, 66, -396, 4700, 3500, -374, 286, 374, -286, 5300, 2700, -440, 308, 440, -308, 6400, 2200, -440, 286, 440, -286, 7300, 1300, 0, 0, 0, 0, 8400, 900),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0)
+}
+point_count = 6
+
+[sub_resource type="Curve2D" id="Curve_2"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 9700, 3900, 286, -352, -286, 352, 9300, 4900, 462, -220, -462, 220, 8400, 5500, 528, -242, -528, 242, 7200, 5900, 550, -220, -550, 220, 6000, 6600, 550, -154, -550, 154, 4700, 6900, 0, 0, 0, 0, 3500, 7300),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 7
+
+[sub_resource type="Curve2D" id="Curve_3"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 7600, 6200, -572, -176, 572, 176, 8800, 6800, -550, 88, 550, -88, 10200, 7000, -506, 66, 506, -66, 11300, 6400, -440, 132, 440, -132, 12500, 6700, 0, 0, 0, 0, 13300, 5800),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0)
+}
+point_count = 6
+
+[sub_resource type="Curve2D" id="Curve_4"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 13300, 5600, -22, 418, 22, -418, 13000, 4600, 22, 374, -22, -374, 13400, 3700, 198, 330, -198, -330, 12900, 2900, 0, 0, 0, 0, 12500, 2200),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0)
+}
+point_count = 5
+
+[sub_resource type="Curve2D" id="Curve_5"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 2300, 5800, 286, 462, -286, -462, 1400, 4900, -44, 528, 44, -528, 1000, 3700, -352, 440, 352, -440, 1600, 2500, -462, 220, 462, -220, 2600, 1700, -440, -88, 440, 88, 3700, 1500, 0, 0, 0, 0, 4600, 2100),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 7
+
+[sub_resource type="Curve2D" id="Curve_6"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 8400, 1000, -528, -22, 528, 22, 9600, 1400, -506, 22, 506, -22, 10800, 1100, 0, 0, 0, 0, 11900, 1300),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[sub_resource type="Curve2D" id="Curve_7"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 3700, 1400, 418, 154, -418, -154, 2900, 800, 440, -110, -440, 110, 1800, 700, 242, -352, -242, 352, 900, 1300, 0, 0, 0, 0, 700, 2300),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0)
+}
+point_count = 5
+
+[sub_resource type="Curve2D" id="Curve_8"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 6400, 5000, -22, -440, 22, 440, 6900, 6000, -110, -330, 110, 330, 6500, 7000, -462, -66, 462, 66, 7400, 7500, 0, 0, 0, 0, 8600, 7300),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0)
+}
+point_count = 5
+
+[node name="Level5" type="Node2D"]
+script = ExtResource("1")
+world_size = Vector2(14000, 8000)
+seed_value = 47
+speck_count = 3500
+health = true
+
+[node name="Trunk" type="Path2D" parent="."]
+curve = SubResource("Curve_0")
+script = ExtResource("3")
+width = 200.0
+strength = 1200.0
+
+[node name="NorthSpur" type="Path2D" parent="."]
+curve = SubResource("Curve_1")
+script = ExtResource("3")
+width = 170.0
+strength = 1000.0
+
+[node name="BackEddy" type="Path2D" parent="."]
+curve = SubResource("Curve_2")
+script = ExtResource("3")
+width = 160.0
+strength = 900.0
+
+[node name="SouthRun" type="Path2D" parent="."]
+curve = SubResource("Curve_3")
+script = ExtResource("3")
+width = 180.0
+strength = 1100.0
+
+[node name="EastClimb" type="Path2D" parent="."]
+curve = SubResource("Curve_4")
+script = ExtResource("3")
+width = 150.0
+strength = 950.0
+
+[node name="WestLoop" type="Path2D" parent="."]
+curve = SubResource("Curve_5")
+script = ExtResource("3")
+width = 150.0
+strength = 850.0
+
+[node name="Shortcut" type="Path2D" parent="."]
+curve = SubResource("Curve_6")
+script = ExtResource("3")
+width = 120.0
+strength = 1300.0
+
+[node name="Sling" type="Path2D" parent="."]
+curve = SubResource("Curve_7")
+script = ExtResource("3")
+width = 130.0
+strength = 1000.0
+
+[node name="MidCross" type="Path2D" parent="."]
+curve = SubResource("Curve_8")
+script = ExtResource("3")
+width = 140.0
+strength = 950.0
+
+[node name="Start" type="Node2D" parent="."]
+position = Vector2(900.0, 6900.0)
+script = ExtResource("2")
+kind = 0
+
+[node name="GoldenPearl" type="Node2D" parent="."]
+position = Vector2(12900.0, 1100.0)
+script = ExtResource("2")
+kind = 1
+size_min = 30.0
+
+[node name="PearlVault" type="Node2D" parent="."]
+position = Vector2(12900.0, 1100.0)
+script = ExtResource("2")
+kind = 4
+radius = 420.0
+size_min = 42.0
+gap_angle_deg = 200.0
+gap_width = 200.0
+
+[node name="FoodScatter" type="Node2D" parent="."]
+position = Vector2(7000.0, 4000.0)
+script = ExtResource("2")
+kind = 9
+count = 1500
+
+[node name="FoodPatch" type="Node2D" parent="."]
+position = Vector2(2626.0, 2762.0)
+script = ExtResource("2")
+kind = 8
+radius = 220.0
+count = 30
+
+[node name="FoodPatch2" type="Node2D" parent="."]
+position = Vector2(5425.0, 4031.0)
+script = ExtResource("2")
+kind = 8
+radius = 220.0
+count = 30
+
+[node name="FoodPatch3" type="Node2D" parent="."]
+position = Vector2(13054.0, 3779.0)
+script = ExtResource("2")
+kind = 8
+radius = 220.0
+count = 30
+
+[node name="FoodPatch4" type="Node2D" parent="."]
+position = Vector2(10245.0, 2132.0)
+script = ExtResource("2")
+kind = 8
+radius = 220.0
+count = 30
+
+[node name="FoodPatch5" type="Node2D" parent="."]
+position = Vector2(6181.0, 6539.0)
+script = ExtResource("2")
+kind = 8
+radius = 220.0
+count = 30
+
+[node name="FoodPatch6" type="Node2D" parent="."]
+position = Vector2(11082.0, 2694.0)
+script = ExtResource("2")
+kind = 8
+radius = 220.0
+count = 30
+
+[node name="FoodPatch7" type="Node2D" parent="."]
+position = Vector2(7458.0, 6357.0)
+script = ExtResource("2")
+kind = 8
+radius = 220.0
+count = 30
+
+[node name="FoodPatch8" type="Node2D" parent="."]
+position = Vector2(9563.0, 1355.0)
+script = ExtResource("2")
+kind = 8
+radius = 220.0
+count = 30
+
+[node name="FoodPatch9" type="Node2D" parent="."]
+position = Vector2(8142.0, 1226.0)
+script = ExtResource("2")
+kind = 8
+radius = 220.0
+count = 30
+
+[node name="FoodPatch10" type="Node2D" parent="."]
+position = Vector2(9444.0, 3317.0)
+script = ExtResource("2")
+kind = 8
+radius = 220.0
+count = 30
+
+[node name="FoodPatch11" type="Node2D" parent="."]
+position = Vector2(9556.0, 2328.0)
+script = ExtResource("2")
+kind = 8
+radius = 220.0
+count = 30
+
+[node name="FoodPatch12" type="Node2D" parent="."]
+position = Vector2(5493.0, 3323.0)
+script = ExtResource("2")
+kind = 8
+radius = 220.0
+count = 30
+
+[node name="Krill" type="Node2D" parent="."]
+position = Vector2(5953.0, 7020.0)
+script = ExtResource("2")
+kind = 10
+count = 14
+
+[node name="Krill2" type="Node2D" parent="."]
+position = Vector2(6111.0, 755.0)
+script = ExtResource("2")
+kind = 10
+count = 14
+
+[node name="Krill3" type="Node2D" parent="."]
+position = Vector2(3824.0, 1504.0)
+script = ExtResource("2")
+kind = 10
+count = 14
+
+[node name="Krill4" type="Node2D" parent="."]
+position = Vector2(9136.0, 637.0)
+script = ExtResource("2")
+kind = 10
+count = 14
+
+[node name="Krill5" type="Node2D" parent="."]
+position = Vector2(4264.0, 2508.0)
+script = ExtResource("2")
+kind = 10
+count = 14
+
+[node name="Krill6" type="Node2D" parent="."]
+position = Vector2(5948.0, 2082.0)
+script = ExtResource("2")
+kind = 10
+count = 14
+
+[node name="Krill7" type="Node2D" parent="."]
+position = Vector2(10882.0, 3860.0)
+script = ExtResource("2")
+kind = 10
+count = 14
+
+[node name="Krill8" type="Node2D" parent="."]
+position = Vector2(7489.0, 6367.0)
+script = ExtResource("2")
+kind = 10
+count = 14
+
+[node name="Krill9" type="Node2D" parent="."]
+position = Vector2(8450.0, 5356.0)
+script = ExtResource("2")
+kind = 10
+count = 14
+
+[node name="Krill10" type="Node2D" parent="."]
+position = Vector2(866.0, 4368.0)
+script = ExtResource("2")
+kind = 10
+count = 14
+
+[node name="Krill11" type="Node2D" parent="."]
+position = Vector2(6343.0, 4074.0)
+script = ExtResource("2")
+kind = 10
+count = 14
+
+[node name="Krill12" type="Node2D" parent="."]
+position = Vector2(9095.0, 2585.0)
+script = ExtResource("2")
+kind = 10
+count = 14
+
+[node name="Krill13" type="Node2D" parent="."]
+position = Vector2(6847.0, 7089.0)
+script = ExtResource("2")
+kind = 10
+count = 14
+
+[node name="Krill14" type="Node2D" parent="."]
+position = Vector2(3180.0, 4130.0)
+script = ExtResource("2")
+kind = 10
+count = 14
+
+[node name="Biter" type="Node2D" parent="."]
+position = Vector2(12363.0, 4789.0)
+script = ExtResource("2")
+kind = 11
+size_min = 28.0
+damage = 20.0
+
+[node name="Biter2" type="Node2D" parent="."]
+position = Vector2(8846.0, 5072.0)
+script = ExtResource("2")
+kind = 11
+size_min = 32.0
+damage = 20.0
+
+[node name="Biter3" type="Node2D" parent="."]
+position = Vector2(11022.0, 5336.0)
+script = ExtResource("2")
+kind = 11
+size_min = 32.0
+damage = 20.0
+
+[node name="Biter4" type="Node2D" parent="."]
+position = Vector2(10864.0, 7567.0)
+script = ExtResource("2")
+kind = 11
+size_min = 36.0
+damage = 20.0
+
+[node name="Biter5" type="Node2D" parent="."]
+position = Vector2(2912.0, 4496.0)
+script = ExtResource("2")
+kind = 11
+size_min = 31.0
+damage = 20.0
+
+[node name="Biter6" type="Node2D" parent="."]
+position = Vector2(11783.0, 4520.0)
+script = ExtResource("2")
+kind = 11
+size_min = 41.0
+damage = 20.0
+
+[node name="Biter7" type="Node2D" parent="."]
+position = Vector2(1554.0, 2151.0)
+script = ExtResource("2")
+kind = 11
+size_min = 25.0
+damage = 20.0
+
+[node name="Biter8" type="Node2D" parent="."]
+position = Vector2(11017.0, 2630.0)
+script = ExtResource("2")
+kind = 11
+size_min = 44.0
+damage = 20.0
+
+[node name="Biter9" type="Node2D" parent="."]
+position = Vector2(3498.0, 6194.0)
+script = ExtResource("2")
+kind = 11
+size_min = 26.0
+damage = 20.0
+
+[node name="Biter10" type="Node2D" parent="."]
+position = Vector2(6079.0, 464.0)
+script = ExtResource("2")
+kind = 11
+size_min = 27.0
+damage = 20.0
+
+[node name="Biter11" type="Node2D" parent="."]
+position = Vector2(9751.0, 6349.0)
+script = ExtResource("2")
+kind = 11
+size_min = 41.0
+damage = 20.0
+
+[node name="Biter12" type="Node2D" parent="."]
+position = Vector2(13564.0, 4659.0)
+script = ExtResource("2")
+kind = 11
+size_min = 47.0
+damage = 20.0
+
+[node name="Biter13" type="Node2D" parent="."]
+position = Vector2(4456.0, 441.0)
+script = ExtResource("2")
+kind = 11
+size_min = 24.0
+damage = 20.0
+
+[node name="Biter14" type="Node2D" parent="."]
+position = Vector2(7376.0, 5058.0)
+script = ExtResource("2")
+kind = 11
+size_min = 36.0
+damage = 20.0
+
+[node name="Biter15" type="Node2D" parent="."]
+position = Vector2(9270.0, 3914.0)
+script = ExtResource("2")
+kind = 11
+size_min = 38.0
+damage = 20.0
+
+[node name="Biter16" type="Node2D" parent="."]
+position = Vector2(12521.0, 5312.0)
+script = ExtResource("2")
+kind = 11
+size_min = 31.0
+damage = 20.0
+
+[node name="Biter17" type="Node2D" parent="."]
+position = Vector2(7920.0, 1933.0)
+script = ExtResource("2")
+kind = 11
+size_min = 37.0
+damage = 20.0
+
+[node name="Biter18" type="Node2D" parent="."]
+position = Vector2(6241.0, 2709.0)
+script = ExtResource("2")
+kind = 11
+size_min = 35.0
+damage = 20.0
+
+[node name="Biter19" type="Node2D" parent="."]
+position = Vector2(5093.0, 3110.0)
+script = ExtResource("2")
+kind = 11
+size_min = 25.0
+damage = 20.0
+
+[node name="Biter20" type="Node2D" parent="."]
+position = Vector2(4772.0, 1255.0)
+script = ExtResource("2")
+kind = 11
+size_min = 30.0
+damage = 20.0
+
+[node name="Biter21" type="Node2D" parent="."]
+position = Vector2(13198.0, 5444.0)
+script = ExtResource("2")
+kind = 11
+size_min = 39.0
+damage = 20.0
+
+[node name="Biter22" type="Node2D" parent="."]
+position = Vector2(11305.0, 6160.0)
+script = ExtResource("2")
+kind = 11
+size_min = 33.0
+damage = 20.0
+
+[node name="Biter23" type="Node2D" parent="."]
+position = Vector2(6705.0, 3846.0)
+script = ExtResource("2")
+kind = 11
+size_min = 24.0
+damage = 20.0
+
+[node name="Biter24" type="Node2D" parent="."]
+position = Vector2(12111.0, 2883.0)
+script = ExtResource("2")
+kind = 11
+size_min = 28.0
+damage = 20.0
+
+[node name="Biter25" type="Node2D" parent="."]
+position = Vector2(8435.0, 3209.0)
+script = ExtResource("2")
+kind = 11
+size_min = 26.0
+damage = 20.0
+
+[node name="Biter26" type="Node2D" parent="."]
+position = Vector2(2127.0, 1276.0)
+script = ExtResource("2")
+kind = 11
+size_min = 19.0
+damage = 20.0
+
+[node name="Biter27" type="Node2D" parent="."]
+position = Vector2(10563.0, 5515.0)
+script = ExtResource("2")
+kind = 11
+size_min = 40.0
+damage = 20.0
+
+[node name="Biter28" type="Node2D" parent="."]
+position = Vector2(5079.0, 1974.0)
+script = ExtResource("2")
+kind = 11
+size_min = 29.0
+damage = 20.0
+
+[node name="Biter29" type="Node2D" parent="."]
+position = Vector2(12608.0, 2657.0)
+script = ExtResource("2")
+kind = 11
+size_min = 30.0
+damage = 20.0
+
+[node name="Biter30" type="Node2D" parent="."]
+position = Vector2(12096.0, 2962.0)
+script = ExtResource("2")
+kind = 11
+size_min = 47.0
+damage = 20.0
+
+[node name="Biter31" type="Node2D" parent="."]
+position = Vector2(3371.0, 2197.0)
+script = ExtResource("2")
+kind = 11
+size_min = 29.0
+damage = 20.0
+
+[node name="Biter32" type="Node2D" parent="."]
+position = Vector2(13257.0, 2225.0)
+script = ExtResource("2")
+kind = 11
+size_min = 44.0
+damage = 20.0
+
+[node name="Biter33" type="Node2D" parent="."]
+position = Vector2(4427.0, 6297.0)
+script = ExtResource("2")
+kind = 11
+size_min = 25.0
+damage = 20.0
+
+[node name="Biter34" type="Node2D" parent="."]
+position = Vector2(7322.0, 5638.0)
+script = ExtResource("2")
+kind = 11
+size_min = 33.0
+damage = 20.0
+
+[node name="Biter35" type="Node2D" parent="."]
+position = Vector2(9574.0, 5321.0)
+script = ExtResource("2")
+kind = 11
+size_min = 30.0
+damage = 20.0
+
+[node name="Biter36" type="Node2D" parent="."]
+position = Vector2(2199.0, 5940.0)
+script = ExtResource("2")
+kind = 11
+size_min = 17.0
+damage = 20.0
+
+[node name="Biter37" type="Node2D" parent="."]
+position = Vector2(2113.0, 3955.0)
+script = ExtResource("2")
+kind = 11
+size_min = 26.0
+damage = 20.0
+
+[node name="Biter38" type="Node2D" parent="."]
+position = Vector2(5223.0, 5429.0)
+script = ExtResource("2")
+kind = 11
+size_min = 33.0
+damage = 20.0
+
+[node name="Biter39" type="Node2D" parent="."]
+position = Vector2(8016.0, 2889.0)
+script = ExtResource("2")
+kind = 11
+size_min = 32.0
+damage = 20.0
+
+[node name="Biter40" type="Node2D" parent="."]
+position = Vector2(6123.0, 4652.0)
+script = ExtResource("2")
+kind = 11
+size_min = 27.0
+damage = 20.0
+
+[node name="Biter41" type="Node2D" parent="."]
+position = Vector2(12715.0, 7104.0)
+script = ExtResource("2")
+kind = 11
+size_min = 41.0
+damage = 20.0
+
+[node name="Biter42" type="Node2D" parent="."]
+position = Vector2(5704.0, 6775.0)
+script = ExtResource("2")
+kind = 11
+size_min = 26.0
+damage = 20.0
+
+[node name="Biter43" type="Node2D" parent="."]
+position = Vector2(963.0, 3305.0)
+script = ExtResource("2")
+kind = 11
+size_min = 23.0
+damage = 20.0
+
+[node name="Biter44" type="Node2D" parent="."]
+position = Vector2(12773.0, 7425.0)
+script = ExtResource("2")
+kind = 11
+size_min = 29.0
+damage = 20.0
+
+[node name="Biter45" type="Node2D" parent="."]
+position = Vector2(5886.0, 3122.0)
+script = ExtResource("2")
+kind = 11
+size_min = 24.0
+damage = 20.0
+
+[node name="Biter46" type="Node2D" parent="."]
+position = Vector2(12255.0, 2523.0)
+script = ExtResource("2")
+kind = 11
+size_min = 47.0
+damage = 20.0
+
+[node name="EggNest" type="Node2D" parent="."]
+position = Vector2(3900.0, 5200.0)
+script = ExtResource("2")
+kind = 6
+radius = 300.0
+count = 40
+spacing = 80.0
+
+[node name="EggNest2" type="Node2D" parent="."]
+position = Vector2(7600.0, 6600.0)
+script = ExtResource("2")
+kind = 6
+radius = 300.0
+count = 40
+spacing = 80.0
+
+[node name="EggNest3" type="Node2D" parent="."]
+position = Vector2(9800.0, 3000.0)
+script = ExtResource("2")
+kind = 6
+radius = 300.0
+count = 40
+spacing = 80.0
+
+[node name="EggNest4" type="Node2D" parent="."]
+position = Vector2(5200.0, 1600.0)
+script = ExtResource("2")
+kind = 6
+radius = 300.0
+count = 40
+spacing = 80.0
+
+[node name="Ring" type="Node2D" parent="."]
+position = Vector2(2600.0, 3200.0)
+script = ExtResource("2")
+kind = 4
+radius = 380.0
+size_min = 38.0
+gap_angle_deg = 90.0
+gap_width = 170.0
+
+[node name="RingFood" type="Node2D" parent="."]
+position = Vector2(2600.0, 3200.0)
+script = ExtResource("2")
+kind = 8
+radius = 228.0
+count = 30
+
+[node name="Ring2" type="Node2D" parent="."]
+position = Vector2(6100.0, 4300.0)
+script = ExtResource("2")
+kind = 4
+radius = 520.0
+size_min = 38.0
+gap_angle_deg = 270.0
+gap_width = 170.0
+
+[node name="RingFood2" type="Node2D" parent="."]
+position = Vector2(6100.0, 4300.0)
+script = ExtResource("2")
+kind = 8
+radius = 312.0
+count = 30
+
+[node name="Ring3" type="Node2D" parent="."]
+position = Vector2(8800.0, 1500.0)
+script = ExtResource("2")
+kind = 4
+radius = 420.0
+size_min = 38.0
+gap_angle_deg = 0.0
+gap_width = 170.0
+
+[node name="RingFood3" type="Node2D" parent="."]
+position = Vector2(8800.0, 1500.0)
+script = ExtResource("2")
+kind = 8
+radius = 252.0
+count = 30
+
+[node name="Ring4" type="Node2D" parent="."]
+position = Vector2(10600.0, 5600.0)
+script = ExtResource("2")
+kind = 4
+radius = 460.0
+size_min = 38.0
+gap_angle_deg = 135.0
+gap_width = 170.0
+
+[node name="RingFood4" type="Node2D" parent="."]
+position = Vector2(10600.0, 5600.0)
+script = ExtResource("2")
+kind = 8
+radius = 276.0
+count = 30
+
+[node name="Ring5" type="Node2D" parent="."]
+position = Vector2(4300.0, 7000.0)
+script = ExtResource("2")
+kind = 4
+radius = 340.0
+size_min = 38.0
+gap_angle_deg = 45.0
+gap_width = 170.0
+
+[node name="RingFood5" type="Node2D" parent="."]
+position = Vector2(4300.0, 7000.0)
+script = ExtResource("2")
+kind = 8
+radius = 204.0
+count = 30
+
+[node name="Ring6" type="Node2D" parent="."]
+position = Vector2(11800.0, 3600.0)
+script = ExtResource("2")
+kind = 4
+radius = 360.0
+size_min = 38.0
+gap_angle_deg = 300.0
+gap_width = 170.0
+
+[node name="RingFood6" type="Node2D" parent="."]
+position = Vector2(11800.0, 3600.0)
+script = ExtResource("2")
+kind = 8
+radius = 216.0
+count = 30
+
+[node name="Boulders" type="Node2D" parent="."]
+position = Vector2(9829.0, 7436.0)
+script = ExtResource("2")
+kind = 3
+radius = 260.0
+count = 6
+size_min = 28.0
+size_max = 70.0
+
+[node name="Boulders2" type="Node2D" parent="."]
+position = Vector2(10689.0, 3769.0)
+script = ExtResource("2")
+kind = 3
+radius = 260.0
+count = 6
+size_min = 28.0
+size_max = 70.0
+
+[node name="Boulders3" type="Node2D" parent="."]
+position = Vector2(9201.0, 6767.0)
+script = ExtResource("2")
+kind = 3
+radius = 260.0
+count = 6
+size_min = 28.0
+size_max = 70.0
+
+[node name="Boulders4" type="Node2D" parent="."]
+position = Vector2(4495.0, 5983.0)
+script = ExtResource("2")
+kind = 3
+radius = 260.0
+count = 6
+size_min = 28.0
+size_max = 70.0
+
+[node name="Boulders5" type="Node2D" parent="."]
+position = Vector2(8280.0, 4882.0)
+script = ExtResource("2")
+kind = 3
+radius = 260.0
+count = 6
+size_min = 28.0
+size_max = 70.0
+
+[node name="Boulders6" type="Node2D" parent="."]
+position = Vector2(7777.0, 1098.0)
+script = ExtResource("2")
+kind = 3
+radius = 260.0
+count = 6
+size_min = 28.0
+size_max = 70.0
+
+[node name="Boulders7" type="Node2D" parent="."]
+position = Vector2(12334.0, 5716.0)
+script = ExtResource("2")
+kind = 3
+radius = 260.0
+count = 6
+size_min = 28.0
+size_max = 70.0
+
+[node name="Boulders8" type="Node2D" parent="."]
+position = Vector2(827.0, 5093.0)
+script = ExtResource("2")
+kind = 3
+radius = 260.0
+count = 6
+size_min = 28.0
+size_max = 70.0
+
+[node name="Boulders9" type="Node2D" parent="."]
+position = Vector2(4246.0, 6257.0)
+script = ExtResource("2")
+kind = 3
+radius = 260.0
+count = 6
+size_min = 28.0
+size_max = 70.0
+
+[node name="Boulders10" type="Node2D" parent="."]
+position = Vector2(9983.0, 7159.0)
+script = ExtResource("2")
+kind = 3
+radius = 260.0
+count = 6
+size_min = 28.0
+size_max = 70.0
+
+[node name="Boulders11" type="Node2D" parent="."]
+position = Vector2(7332.0, 6710.0)
+script = ExtResource("2")
+kind = 3
+radius = 260.0
+count = 6
+size_min = 28.0
+size_max = 70.0
+
+[node name="Boulders12" type="Node2D" parent="."]
+position = Vector2(3125.0, 1363.0)
+script = ExtResource("2")
+kind = 3
+radius = 260.0
+count = 6
+size_min = 28.0
+size_max = 70.0
+
+[node name="Boulders13" type="Node2D" parent="."]
+position = Vector2(3418.0, 6861.0)
+script = ExtResource("2")
+kind = 3
+radius = 260.0
+count = 6
+size_min = 28.0
+size_max = 70.0
+
+[node name="Boulders14" type="Node2D" parent="."]
+position = Vector2(10885.0, 2385.0)
+script = ExtResource("2")
+kind = 3
+radius = 260.0
+count = 6
+size_min = 28.0
+size_max = 70.0
+
+[node name="Boulders15" type="Node2D" parent="."]
+position = Vector2(4701.0, 6508.0)
+script = ExtResource("2")
+kind = 3
+radius = 260.0
+count = 6
+size_min = 28.0
+size_max = 70.0
+
+[node name="Boulders16" type="Node2D" parent="."]
+position = Vector2(10583.0, 5381.0)
+script = ExtResource("2")
+kind = 3
+radius = 260.0
+count = 6
+size_min = 28.0
+size_max = 70.0
+
+[node name="Boulders17" type="Node2D" parent="."]
+position = Vector2(9644.0, 1892.0)
+script = ExtResource("2")
+kind = 3
+radius = 260.0
+count = 6
+size_min = 28.0
+size_max = 70.0
+
+[node name="Boulders18" type="Node2D" parent="."]
+position = Vector2(11287.0, 6262.0)
+script = ExtResource("2")
+kind = 3
+radius = 260.0
+count = 6
+size_min = 28.0
+size_max = 70.0
+
+[node name="Boulders19" type="Node2D" parent="."]
+position = Vector2(10446.0, 2078.0)
+script = ExtResource("2")
+kind = 3
+radius = 260.0
+count = 6
+size_min = 28.0
+size_max = 70.0
+
+[node name="Boulders20" type="Node2D" parent="."]
+position = Vector2(2504.0, 1096.0)
+script = ExtResource("2")
+kind = 3
+radius = 260.0
+count = 6
+size_min = 28.0
+size_max = 70.0
+
+[node name="Boulders21" type="Node2D" parent="."]
+position = Vector2(3682.0, 2914.0)
+script = ExtResource("2")
+kind = 3
+radius = 260.0
+count = 6
+size_min = 28.0
+size_max = 70.0
+
+[node name="Boulders22" type="Node2D" parent="."]
+position = Vector2(6717.0, 3962.0)
+script = ExtResource("2")
+kind = 3
+radius = 260.0
+count = 6
+size_min = 28.0
+size_max = 70.0
+
+[node name="Toxic" type="Node2D" parent="."]
+position = Vector2(7200.0, 2400.0)
+script = ExtResource("2")
+kind = 12
+radius = 300.0
+damage = 14.0
+
+[node name="Toxic2" type="Node2D" parent="."]
+position = Vector2(3300.0, 4600.0)
+script = ExtResource("2")
+kind = 12
+radius = 300.0
+damage = 14.0
+
+[node name="Toxic3" type="Node2D" parent="."]
+position = Vector2(11000.0, 7000.0)
+script = ExtResource("2")
+kind = 12
+radius = 300.0
+damage = 14.0
+
+[node name="Angler1" type="Node2D" parent="."]
+position = Vector2(5600, 6000)
+script = ExtResource("2")
+kind = 15
+size_min = 70.0
+
+[node name="Angler2" type="Node2D" parent="."]
+position = Vector2(10000, 2200)
+script = ExtResource("2")
+kind = 15
+size_min = 85.0
+
+[node name="Angler3" type="Node2D" parent="."]
+position = Vector2(12000, 4800)
+script = ExtResource("2")
+kind = 15
+size_min = 75.0

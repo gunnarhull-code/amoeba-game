@@ -1,0 +1,817 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://level_def.gd" id="1"]
+[ext_resource type="Script" path="res://level_marker.gd" id="2"]
+[ext_resource type="Script" path="res://current_path.gd" id="3"]
+
+[sub_resource type="Curve2D" id="Curve_0"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 16050, 3500, 517, -66, -517, 66, 15000, 3550, 0, 0, 0, 0, 13700, 3800),
+"tilts": PackedFloat32Array(0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve_1"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 2500, 1400, -1650, 66, 1650, -66, 7000, 700, -1540, -44, 1540, 44, 10000, 1100, -1760, -44, 1760, 44, 14000, 900, -1650, -44, 1650, 44, 18000, 1300, 0, 0, 0, 0, 21500, 1100),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0)
+}
+point_count = 6
+
+[sub_resource type="Curve2D" id="Curve_2"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 25000, 13300, 1760, -33, -1760, 33, 21000, 13500, 1980, 0, -1980, 0, 17000, 13450, 2200, 33, -2200, -33, 12000, 13500, 1870, 154, -1870, -154, 7000, 13300, 1122, 902, -1122, -902, 3500, 12800, 0, 0, 0, 0, 1900, 9200),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 7
+
+[node name="Level6" type="Node2D"]
+script = ExtResource("1")
+world_size = Vector2(26000, 14000)
+seed_value = 66
+speck_count = 6000
+health = true
+krill_respawn = false
+abilities = true
+harpoon_upgrade_stage = 4
+fragment_value = 0.25
+home_radius = 260.0
+keys_needed = 3
+
+[node name="DoorRush" type="Path2D" parent="."]
+curve = SubResource("Curve_0")
+script = ExtResource("3")
+width = 150.0
+strength = 800.0
+food_count = 0
+
+[node name="TopStream" type="Path2D" parent="."]
+curve = SubResource("Curve_1")
+script = ExtResource("3")
+width = 180.0
+strength = 750.0
+food_count = 0
+
+[node name="HomeStream" type="Path2D" parent="."]
+curve = SubResource("Curve_2")
+script = ExtResource("3")
+width = 180.0
+strength = 750.0
+food_count = 0
+
+[node name="Start" type="Node2D" parent="."]
+position = Vector2(1600.0, 7000.0)
+script = ExtResource("2")
+kind = 0
+
+[node name="Vault" type="Node2D" parent="."]
+position = Vector2(22800.0, 7000.0)
+script = ExtResource("2")
+kind = 4
+radius = 1400.0
+size_min = 80.0
+gap_angle_deg = 180.0
+gap_width = 0.0
+gate_deg = 34.0
+
+[node name="VaultFood" type="Node2D" parent="."]
+position = Vector2(22500.0, 6500.0)
+script = ExtResource("2")
+kind = 8
+radius = 700.0
+count = 30
+
+[node name="KeyNest" type="Node2D" parent="."]
+position = Vector2(7500.0, 3000.0)
+script = ExtResource("2")
+kind = 4
+radius = 1100.0
+size_min = 70.0
+gap_angle_deg = 90.0
+gap_width = 130.0
+
+[node name="Key" type="Node2D" parent="."]
+position = Vector2(7500.0, 2250.0)
+script = ExtResource("2")
+kind = 16
+
+[node name="NestFood" type="Node2D" parent="."]
+position = Vector2(7500.0, 3000.0)
+script = ExtResource("2")
+kind = 8
+radius = 800.0
+count = 40
+
+[node name="DoorEggs" type="Node2D" parent="."]
+position = Vector2(7500.0, 4500.0)
+script = ExtResource("2")
+kind = 6
+radius = 520.0
+count = 55
+spacing = 85.0
+
+[node name="KeyNest2" type="Node2D" parent="."]
+position = Vector2(12500.0, 11000.0)
+script = ExtResource("2")
+kind = 4
+radius = 1100.0
+size_min = 70.0
+gap_angle_deg = 270.0
+gap_width = 130.0
+
+[node name="Key2" type="Node2D" parent="."]
+position = Vector2(12500.0, 11750.0)
+script = ExtResource("2")
+kind = 16
+
+[node name="NestFood2" type="Node2D" parent="."]
+position = Vector2(12500.0, 11000.0)
+script = ExtResource("2")
+kind = 8
+radius = 800.0
+count = 40
+
+[node name="DoorToxic" type="Node2D" parent="."]
+position = Vector2(12500.0, 9700.0)
+script = ExtResource("2")
+kind = 12
+radius = 380.0
+damage = 10.0
+
+[node name="DoorNucleus" type="Node2D" parent="."]
+position = Vector2(11200.0, 9500.0)
+script = ExtResource("2")
+kind = 14
+size_min = 140.0
+radius = 1000.0
+pull = 1700.0
+
+[node name="KeyNest3" type="Node2D" parent="."]
+position = Vector2(17000.0, 3500.0)
+script = ExtResource("2")
+kind = 4
+radius = 1100.0
+size_min = 70.0
+gap_angle_deg = 180.0
+gap_width = 130.0
+
+[node name="Key3" type="Node2D" parent="."]
+position = Vector2(17750.0, 3500.0)
+script = ExtResource("2")
+kind = 16
+
+[node name="NestFood3" type="Node2D" parent="."]
+position = Vector2(17000.0, 3500.0)
+script = ExtResource("2")
+kind = 8
+radius = 800.0
+count = 40
+
+[node name="Nest" type="Node2D" parent="."]
+position = Vector2(4300.0, 11200.0)
+script = ExtResource("2")
+kind = 4
+radius = 1000.0
+size_min = 65.0
+gap_angle_deg = 0.0
+gap_width = 185.0
+
+[node name="NestFood4" type="Node2D" parent="."]
+position = Vector2(4300.0, 11200.0)
+script = ExtResource("2")
+kind = 8
+radius = 700.0
+count = 35
+
+[node name="DoorEggs2" type="Node2D" parent="."]
+position = Vector2(5750.0, 11200.0)
+script = ExtResource("2")
+kind = 6
+radius = 380.0
+count = 22
+spacing = 90.0
+
+[node name="Nest2" type="Node2D" parent="."]
+position = Vector2(4300.0, 2500.0)
+script = ExtResource("2")
+kind = 4
+radius = 1000.0
+size_min = 65.0
+gap_angle_deg = 90.0
+gap_width = 189.0
+
+[node name="NestFood5" type="Node2D" parent="."]
+position = Vector2(4300.0, 2500.0)
+script = ExtResource("2")
+kind = 8
+radius = 700.0
+count = 35
+
+[node name="DoorBoulders" type="Node2D" parent="."]
+position = Vector2(4300.0, 3950.0)
+script = ExtResource("2")
+kind = 3
+radius = 380.0
+count = 9
+size_min = 40.0
+size_max = 90.0
+
+[node name="Nest3" type="Node2D" parent="."]
+position = Vector2(9800.0, 7200.0)
+script = ExtResource("2")
+kind = 4
+radius = 1000.0
+size_min = 65.0
+gap_angle_deg = 180.0
+gap_width = 193.0
+
+[node name="NestFood6" type="Node2D" parent="."]
+position = Vector2(9800.0, 7200.0)
+script = ExtResource("2")
+kind = 8
+radius = 700.0
+count = 35
+
+[node name="DoorToxic2" type="Node2D" parent="."]
+position = Vector2(8350.0, 7200.0)
+script = ExtResource("2")
+kind = 12
+radius = 330.0
+damage = 9.0
+
+[node name="Nest4" type="Node2D" parent="."]
+position = Vector2(14800.0, 7600.0)
+script = ExtResource("2")
+kind = 4
+radius = 1000.0
+size_min = 65.0
+gap_angle_deg = 270.0
+gap_width = 198.0
+
+[node name="NestFood7" type="Node2D" parent="."]
+position = Vector2(14800.0, 7600.0)
+script = ExtResource("2")
+kind = 8
+radius = 700.0
+count = 35
+
+[node name="DoorGuard" type="Node2D" parent="."]
+position = Vector2(14800.0, 6150.0)
+script = ExtResource("2")
+kind = 11
+size_min = 49.0
+damage = 25.0
+
+[node name="Nest5" type="Node2D" parent="."]
+position = Vector2(19000.0, 11300.0)
+script = ExtResource("2")
+kind = 4
+radius = 1000.0
+size_min = 65.0
+gap_angle_deg = 180.0
+gap_width = 196.0
+
+[node name="NestFood8" type="Node2D" parent="."]
+position = Vector2(19000.0, 11300.0)
+script = ExtResource("2")
+kind = 8
+radius = 700.0
+count = 35
+
+[node name="DoorEggs3" type="Node2D" parent="."]
+position = Vector2(17550.0, 11300.0)
+script = ExtResource("2")
+kind = 6
+radius = 380.0
+count = 22
+spacing = 90.0
+
+[node name="Nest6" type="Node2D" parent="."]
+position = Vector2(19800.0, 2600.0)
+script = ExtResource("2")
+kind = 4
+radius = 1000.0
+size_min = 65.0
+gap_angle_deg = 90.0
+gap_width = 203.0
+
+[node name="NestFood9" type="Node2D" parent="."]
+position = Vector2(19800.0, 2600.0)
+script = ExtResource("2")
+kind = 8
+radius = 700.0
+count = 35
+
+[node name="DoorBoulders2" type="Node2D" parent="."]
+position = Vector2(19800.0, 4050.0)
+script = ExtResource("2")
+kind = 3
+radius = 380.0
+count = 9
+size_min = 40.0
+size_max = 90.0
+
+[node name="Nest7" type="Node2D" parent="."]
+position = Vector2(8000.0, 11600.0)
+script = ExtResource("2")
+kind = 4
+radius = 1000.0
+size_min = 65.0
+gap_angle_deg = 270.0
+gap_width = 209.0
+
+[node name="NestFood10" type="Node2D" parent="."]
+position = Vector2(8000.0, 11600.0)
+script = ExtResource("2")
+kind = 8
+radius = 700.0
+count = 35
+
+[node name="DoorToxic3" type="Node2D" parent="."]
+position = Vector2(8000.0, 10150.0)
+script = ExtResource("2")
+kind = 12
+radius = 330.0
+damage = 9.0
+
+[node name="Nest8" type="Node2D" parent="."]
+position = Vector2(15500.0, 12000.0)
+script = ExtResource("2")
+kind = 4
+radius = 1000.0
+size_min = 65.0
+gap_angle_deg = 0.0
+gap_width = 169.0
+
+[node name="NestFood11" type="Node2D" parent="."]
+position = Vector2(15500.0, 12000.0)
+script = ExtResource("2")
+kind = 8
+radius = 700.0
+count = 35
+
+[node name="DoorGuard2" type="Node2D" parent="."]
+position = Vector2(16950.0, 12000.0)
+script = ExtResource("2")
+kind = 11
+size_min = 45.0
+damage = 25.0
+
+[node name="Nest9" type="Node2D" parent="."]
+position = Vector2(12000.0, 2300.0)
+script = ExtResource("2")
+kind = 4
+radius = 1000.0
+size_min = 65.0
+gap_angle_deg = 90.0
+gap_width = 158.0
+
+[node name="NestFood12" type="Node2D" parent="."]
+position = Vector2(12000.0, 2300.0)
+script = ExtResource("2")
+kind = 8
+radius = 700.0
+count = 35
+
+[node name="DoorEggs4" type="Node2D" parent="."]
+position = Vector2(12000.0, 3750.0)
+script = ExtResource("2")
+kind = 6
+radius = 380.0
+count = 22
+spacing = 90.0
+
+[node name="Nucleus" type="Node2D" parent="."]
+position = Vector2(5800.0, 5600.0)
+script = ExtResource("2")
+kind = 14
+size_min = 150.0
+radius = 1100.0
+pull = 1700.0
+
+[node name="Nucleus2" type="Node2D" parent="."]
+position = Vector2(13000.0, 6000.0)
+script = ExtResource("2")
+kind = 14
+size_min = 180.0
+radius = 1200.0
+pull = 1800.0
+
+[node name="Nucleus3" type="Node2D" parent="."]
+position = Vector2(17800.0, 9300.0)
+script = ExtResource("2")
+kind = 14
+size_min = 130.0
+radius = 1000.0
+pull = 1600.0
+
+[node name="Nucleus4" type="Node2D" parent="."]
+position = Vector2(9300.0, 9900.0)
+script = ExtResource("2")
+kind = 14
+size_min = 120.0
+radius = 900.0
+pull = 1500.0
+
+[node name="Nucleus5" type="Node2D" parent="."]
+position = Vector2(21000.0, 9900.0)
+script = ExtResource("2")
+kind = 14
+size_min = 140.0
+radius = 1000.0
+pull = 1600.0
+
+[node name="Biter" type="Node2D" parent="."]
+position = Vector2(6612.0, 7492.0)
+script = ExtResource("2")
+kind = 11
+size_min = 42.0
+damage = 20.0
+
+[node name="Biter2" type="Node2D" parent="."]
+position = Vector2(2496.0, 12556.0)
+script = ExtResource("2")
+kind = 11
+size_min = 27.0
+damage = 20.0
+
+[node name="Biter3" type="Node2D" parent="."]
+position = Vector2(3611.0, 5361.0)
+script = ExtResource("2")
+kind = 11
+size_min = 18.0
+damage = 20.0
+
+[node name="Biter4" type="Node2D" parent="."]
+position = Vector2(8197.0, 5950.0)
+script = ExtResource("2")
+kind = 11
+size_min = 35.0
+damage = 20.0
+
+[node name="Biter5" type="Node2D" parent="."]
+position = Vector2(5532.0, 13094.0)
+script = ExtResource("2")
+kind = 11
+size_min = 32.0
+damage = 20.0
+
+[node name="Biter6" type="Node2D" parent="."]
+position = Vector2(13386.0, 5143.0)
+script = ExtResource("2")
+kind = 11
+size_min = 33.0
+damage = 20.0
+
+[node name="Biter7" type="Node2D" parent="."]
+position = Vector2(9156.0, 9239.0)
+script = ExtResource("2")
+kind = 11
+size_min = 18.0
+damage = 20.0
+
+[node name="Biter8" type="Node2D" parent="."]
+position = Vector2(2997.0, 754.0)
+script = ExtResource("2")
+kind = 11
+size_min = 28.0
+damage = 20.0
+
+[node name="Biter9" type="Node2D" parent="."]
+position = Vector2(2095.0, 10845.0)
+script = ExtResource("2")
+kind = 11
+size_min = 31.0
+damage = 20.0
+
+[node name="Krill" type="Node2D" parent="."]
+position = Vector2(15034.0, 2187.0)
+script = ExtResource("2")
+kind = 10
+count = 12
+
+[node name="Krill2" type="Node2D" parent="."]
+position = Vector2(21344.0, 5234.0)
+script = ExtResource("2")
+kind = 10
+count = 12
+
+[node name="Krill3" type="Node2D" parent="."]
+position = Vector2(5772.0, 5509.0)
+script = ExtResource("2")
+kind = 10
+count = 12
+
+[node name="Krill4" type="Node2D" parent="."]
+position = Vector2(5585.0, 7029.0)
+script = ExtResource("2")
+kind = 10
+count = 12
+
+[node name="Krill5" type="Node2D" parent="."]
+position = Vector2(15181.0, 2614.0)
+script = ExtResource("2")
+kind = 10
+count = 12
+
+[node name="Boulders" type="Node2D" parent="."]
+position = Vector2(5913.0, 11198.0)
+script = ExtResource("2")
+kind = 3
+radius = 300.0
+count = 6
+size_min = 30.0
+size_max = 80.0
+
+[node name="Boulders2" type="Node2D" parent="."]
+position = Vector2(9074.0, 1857.0)
+script = ExtResource("2")
+kind = 3
+radius = 300.0
+count = 6
+size_min = 30.0
+size_max = 80.0
+
+[node name="Boulders3" type="Node2D" parent="."]
+position = Vector2(19593.0, 9692.0)
+script = ExtResource("2")
+kind = 3
+radius = 300.0
+count = 6
+size_min = 30.0
+size_max = 80.0
+
+[node name="Boulders4" type="Node2D" parent="."]
+position = Vector2(10210.0, 10256.0)
+script = ExtResource("2")
+kind = 3
+radius = 300.0
+count = 6
+size_min = 30.0
+size_max = 80.0
+
+[node name="Boulders5" type="Node2D" parent="."]
+position = Vector2(24793.0, 3131.0)
+script = ExtResource("2")
+kind = 3
+radius = 300.0
+count = 6
+size_min = 30.0
+size_max = 80.0
+
+[node name="Boulders6" type="Node2D" parent="."]
+position = Vector2(4688.0, 5529.0)
+script = ExtResource("2")
+kind = 3
+radius = 300.0
+count = 6
+size_min = 30.0
+size_max = 80.0
+
+[node name="Boulders7" type="Node2D" parent="."]
+position = Vector2(12677.0, 12885.0)
+script = ExtResource("2")
+kind = 3
+radius = 300.0
+count = 6
+size_min = 30.0
+size_max = 80.0
+
+[node name="Boulders8" type="Node2D" parent="."]
+position = Vector2(20737.0, 11175.0)
+script = ExtResource("2")
+kind = 3
+radius = 300.0
+count = 6
+size_min = 30.0
+size_max = 80.0
+
+[node name="Boulders9" type="Node2D" parent="."]
+position = Vector2(23263.0, 12187.0)
+script = ExtResource("2")
+kind = 3
+radius = 300.0
+count = 6
+size_min = 30.0
+size_max = 80.0
+
+[node name="Boulders10" type="Node2D" parent="."]
+position = Vector2(20726.0, 9929.0)
+script = ExtResource("2")
+kind = 3
+radius = 300.0
+count = 6
+size_min = 30.0
+size_max = 80.0
+
+[node name="Boulders11" type="Node2D" parent="."]
+position = Vector2(5891.0, 1552.0)
+script = ExtResource("2")
+kind = 3
+radius = 300.0
+count = 6
+size_min = 30.0
+size_max = 80.0
+
+[node name="Boulders12" type="Node2D" parent="."]
+position = Vector2(25137.0, 10063.0)
+script = ExtResource("2")
+kind = 3
+radius = 300.0
+count = 6
+size_min = 30.0
+size_max = 80.0
+
+[node name="EggPatch" type="Node2D" parent="."]
+position = Vector2(24959.0, 1496.0)
+script = ExtResource("2")
+kind = 6
+radius = 300.0
+count = 20
+spacing = 85.0
+
+[node name="FoodScatter" type="Node2D" parent="."]
+position = Vector2(13000.0, 7000.0)
+script = ExtResource("2")
+kind = 9
+count = 1600
+
+[node name="PearlAngler" type="Node2D" parent="."]
+position = Vector2(23150.0, 7000.0)
+script = ExtResource("2")
+kind = 15
+size_min = 451.0
+damage = 30.0
+pearl_size = 22.0
+pearl_inside = true
+
+[node name="Angler" type="Node2D" parent="."]
+position = Vector2(7500.0, 3000.0)
+script = ExtResource("2")
+kind = 15
+size_min = 492.0
+damage = 30.0
+pearl_size = 22.0
+pearl_inside = false
+
+[node name="Angler2" type="Node2D" parent="."]
+position = Vector2(12500.0, 11000.0)
+script = ExtResource("2")
+kind = 15
+size_min = 507.0
+damage = 30.0
+pearl_size = 22.0
+pearl_inside = false
+
+[node name="Angler3" type="Node2D" parent="."]
+position = Vector2(17000.0, 3500.0)
+script = ExtResource("2")
+kind = 15
+size_min = 452.0
+damage = 30.0
+pearl_size = 22.0
+pearl_inside = false
+
+[node name="Angler4" type="Node2D" parent="."]
+position = Vector2(4300.0, 11200.0)
+script = ExtResource("2")
+kind = 15
+size_min = 472.0
+damage = 30.0
+pearl_size = 22.0
+pearl_inside = false
+
+[node name="Angler5" type="Node2D" parent="."]
+position = Vector2(4300.0, 2500.0)
+script = ExtResource("2")
+kind = 15
+size_min = 419.0
+damage = 30.0
+pearl_size = 22.0
+pearl_inside = false
+
+[node name="Angler6" type="Node2D" parent="."]
+position = Vector2(9800.0, 7200.0)
+script = ExtResource("2")
+kind = 15
+size_min = 444.0
+damage = 30.0
+pearl_size = 22.0
+pearl_inside = false
+
+[node name="Angler7" type="Node2D" parent="."]
+position = Vector2(14800.0, 7600.0)
+script = ExtResource("2")
+kind = 15
+size_min = 510.0
+damage = 30.0
+pearl_size = 22.0
+pearl_inside = false
+
+[node name="Angler8" type="Node2D" parent="."]
+position = Vector2(19000.0, 11300.0)
+script = ExtResource("2")
+kind = 15
+size_min = 428.0
+damage = 30.0
+pearl_size = 22.0
+pearl_inside = false
+
+[node name="Angler9" type="Node2D" parent="."]
+position = Vector2(19800.0, 2600.0)
+script = ExtResource("2")
+kind = 15
+size_min = 493.0
+damage = 30.0
+pearl_size = 22.0
+pearl_inside = false
+
+[node name="Angler10" type="Node2D" parent="."]
+position = Vector2(8000.0, 11600.0)
+script = ExtResource("2")
+kind = 15
+size_min = 472.0
+damage = 30.0
+pearl_size = 22.0
+pearl_inside = false
+
+[node name="Angler11" type="Node2D" parent="."]
+position = Vector2(15500.0, 12000.0)
+script = ExtResource("2")
+kind = 15
+size_min = 484.0
+damage = 30.0
+pearl_size = 22.0
+pearl_inside = false
+
+[node name="Angler12" type="Node2D" parent="."]
+position = Vector2(12000.0, 2300.0)
+script = ExtResource("2")
+kind = 15
+size_min = 423.0
+damage = 30.0
+pearl_size = 22.0
+pearl_inside = false
+
+[node name="Angler13" type="Node2D" parent="."]
+position = Vector2(3200.0, 4200.0)
+script = ExtResource("2")
+kind = 15
+size_min = 482.0
+damage = 30.0
+pearl_size = 22.0
+pearl_inside = false
+
+[node name="Angler14" type="Node2D" parent="."]
+position = Vector2(6500.0, 8200.0)
+script = ExtResource("2")
+kind = 15
+size_min = 414.0
+damage = 30.0
+pearl_size = 22.0
+pearl_inside = false
+
+[node name="Angler15" type="Node2D" parent="."]
+position = Vector2(11000.0, 5000.0)
+script = ExtResource("2")
+kind = 15
+size_min = 420.0
+damage = 30.0
+pearl_size = 22.0
+pearl_inside = false
+
+[node name="Angler16" type="Node2D" parent="."]
+position = Vector2(16500.0, 9800.0)
+script = ExtResource("2")
+kind = 15
+size_min = 426.0
+damage = 30.0
+pearl_size = 22.0
+pearl_inside = false
+
+[node name="Angler17" type="Node2D" parent="."]
+position = Vector2(21000.0, 4500.0)
+script = ExtResource("2")
+kind = 15
+size_min = 495.0
+damage = 30.0
+pearl_size = 22.0
+pearl_inside = false
+
+[node name="Angler18" type="Node2D" parent="."]
+position = Vector2(24500.0, 12000.0)
+script = ExtResource("2")
+kind = 15
+size_min = 462.0
+damage = 30.0
+pearl_size = 22.0
+pearl_inside = false
+
+[node name="Angler19" type="Node2D" parent="."]
+position = Vector2(24200.0, 1800.0)
+script = ExtResource("2")
+kind = 15
+size_min = 477.0
+damage = 30.0
+pearl_size = 22.0
+pearl_inside = false

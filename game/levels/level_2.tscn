@@ -1,0 +1,241 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://level_def.gd" id="1"]
+[ext_resource type="Script" path="res://level_marker.gd" id="2"]
+
+[node name="Level2" type="Node2D"]
+script = ExtResource("1")
+world_size = Vector2(6400, 3600)
+seed_value = 11
+speck_count = 1250
+
+[node name="Start" type="Node2D" parent="."]
+position = Vector2(500, 1800)
+script = ExtResource("2")
+kind = 0
+
+[node name="GoldenPearl" type="Node2D" parent="."]
+position = Vector2(5700, 1800)
+script = ExtResource("2")
+kind = 1
+size_min = 18.0
+
+[node name="PearlFunnel" type="Node2D" parent="."]
+position = Vector2(5700, 1800)
+script = ExtResource("2")
+kind = 4
+radius = 720.0
+size_min = 40.0
+gap_angle_deg = 180.0
+gap_width = 170.0
+
+[node name="Minefield" type="Node2D" parent="."]
+position = Vector2(5700, 1800)
+script = ExtResource("2")
+kind = 6
+radius = 620.0
+count = 1200
+spacing = 72.0
+clear_radius = 70.0
+
+[node name="BaitEggs1" type="Node2D" parent="."]
+position = Vector2(1500, 1500)
+script = ExtResource("2")
+kind = 6
+radius = 150.0
+count = 80
+spacing = 60.0
+clear_radius = 40.0
+
+[node name="BaitFood1" type="Node2D" parent="."]
+position = Vector2(1500, 1500)
+script = ExtResource("2")
+kind = 8
+radius = 110.0
+count = 12
+
+[node name="BaitEggs2" type="Node2D" parent="."]
+position = Vector2(2600, 2300)
+script = ExtResource("2")
+kind = 6
+radius = 150.0
+count = 80
+spacing = 60.0
+clear_radius = 40.0
+
+[node name="BaitFood2" type="Node2D" parent="."]
+position = Vector2(2600, 2300)
+script = ExtResource("2")
+kind = 8
+radius = 110.0
+count = 12
+
+[node name="BaitEggs3" type="Node2D" parent="."]
+position = Vector2(3600, 900)
+script = ExtResource("2")
+kind = 6
+radius = 150.0
+count = 80
+spacing = 60.0
+clear_radius = 40.0
+
+[node name="BaitFood3" type="Node2D" parent="."]
+position = Vector2(3600, 900)
+script = ExtResource("2")
+kind = 8
+radius = 110.0
+count = 12
+
+[node name="BaitEggs4" type="Node2D" parent="."]
+position = Vector2(4300, 2800)
+script = ExtResource("2")
+kind = 6
+radius = 150.0
+count = 80
+spacing = 60.0
+clear_radius = 40.0
+
+[node name="BaitFood4" type="Node2D" parent="."]
+position = Vector2(4300, 2800)
+script = ExtResource("2")
+kind = 8
+radius = 110.0
+count = 12
+
+[node name="Boulders1" type="Node2D" parent="."]
+position = Vector2(1000, 800)
+script = ExtResource("2")
+kind = 3
+radius = 220.0
+count = 6
+size_min = 28.0
+size_max = 60.0
+
+[node name="Boulders2" type="Node2D" parent="."]
+position = Vector2(1800, 2800)
+script = ExtResource("2")
+kind = 3
+radius = 220.0
+count = 6
+size_min = 28.0
+size_max = 60.0
+
+[node name="Boulders3" type="Node2D" parent="."]
+position = Vector2(2200, 1000)
+script = ExtResource("2")
+kind = 3
+radius = 220.0
+count = 6
+size_min = 28.0
+size_max = 60.0
+
+[node name="Boulders4" type="Node2D" parent="."]
+position = Vector2(3100, 1900)
+script = ExtResource("2")
+kind = 3
+radius = 220.0
+count = 6
+size_min = 28.0
+size_max = 60.0
+
+[node name="Boulders5" type="Node2D" parent="."]
+position = Vector2(3300, 3000)
+script = ExtResource("2")
+kind = 3
+radius = 220.0
+count = 6
+size_min = 28.0
+size_max = 60.0
+
+[node name="Boulders6" type="Node2D" parent="."]
+position = Vector2(3900, 1500)
+script = ExtResource("2")
+kind = 3
+radius = 220.0
+count = 6
+size_min = 28.0
+size_max = 60.0
+
+[node name="Boulders7" type="Node2D" parent="."]
+position = Vector2(4400, 600)
+script = ExtResource("2")
+kind = 3
+radius = 220.0
+count = 6
+size_min = 28.0
+size_max = 60.0
+
+[node name="Boulders8" type="Node2D" parent="."]
+position = Vector2(4600, 3100)
+script = ExtResource("2")
+kind = 3
+radius = 220.0
+count = 6
+size_min = 28.0
+size_max = 60.0
+
+[node name="FoodScatter" type="Node2D" parent="."]
+position = Vector2(3200, 1800)
+script = ExtResource("2")
+kind = 9
+count = 280
+
+[node name="Krill1" type="Node2D" parent="."]
+position = Vector2(1400, 700)
+script = ExtResource("2")
+kind = 10
+count = 14
+
+[node name="Krill2" type="Node2D" parent="."]
+position = Vector2(1700, 2900)
+script = ExtResource("2")
+kind = 10
+count = 14
+
+[node name="Krill3" type="Node2D" parent="."]
+position = Vector2(2900, 1500)
+script = ExtResource("2")
+kind = 10
+count = 14
+
+[node name="Krill4" type="Node2D" parent="."]
+position = Vector2(3500, 2600)
+script = ExtResource("2")
+kind = 10
+count = 14
+
+[node name="Krill5" type="Node2D" parent="."]
+position = Vector2(2400, 2000)
+script = ExtResource("2")
+kind = 10
+count = 14
+
+[node name="Krill6" type="Node2D" parent="."]
+position = Vector2(4200, 1100)
+script = ExtResource("2")
+kind = 10
+count = 14
+
+[node name="Mid1" type="Node2D" parent="."]
+position = Vector2(2000, 1300)
+script = ExtResource("2")
+kind = 11
+size_min = 28.0
+
+[node name="Mid2" type="Node2D" parent="."]
+position = Vector2(3000, 2800)
+script = ExtResource("2")
+kind = 11
+size_min = 28.0
+
+[node name="Mid3" type="Node2D" parent="."]
+position = Vector2(3900, 2100)
+script = ExtResource("2")
+kind = 11
+size_min = 28.0
+
+[node name="Mid4" type="Node2D" parent="."]
+position = Vector2(4700, 900)
+script = ExtResource("2")
+kind = 11
+size_min = 28.0

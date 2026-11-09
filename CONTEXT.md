@@ -1,14 +1,14 @@
 # Amoeba Game
 
-A single-player puzzle-action game (working title) in which the player controls a tiny amoeba that must grow by absorbing smaller creatures in order to reach and absorb a level's golden Orb(s). Abstract, translucent, cell-under-a-microscope visual register set in a mood that hybridizes underwater and outer-space.
+A single-player puzzle-action game (working title) in which the player controls a tiny amoeba that must grow by absorbing smaller creatures in order to reach and absorb a level's Golden Pearl(s). Abstract, translucent, cell-under-a-microscope visual register set in a mood that hybridizes underwater and outer-space.
 
 ## Language
 
-**Orb**:
-The goal object of a level. The player must be larger than an Orb to Absorb it; doing so is (one form of) the level's win condition. A level may contain one or more Orbs.
+**Golden Pearl**:
+The goal object of a level. The player must be larger than a Golden Pearl to Absorb it; doing so is (one form of) the level's win condition. A level may contain one or more Golden Pearls.
 
 **Absorb**:
-The act of consuming a smaller Amoeba, Fragment, or Orb, converting it into Growth and/or Ammo for the player.
+The act of consuming a smaller Amoeba, Fragment, or Golden Pearl, converting it into Growth and/or Ammo for the player.
 _Avoid_: eat, consume (informal synonyms used loosely in conversation; prefer Absorb in design docs)
 
 **Amoeba**:

@@ -1,0 +1,206 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://level_def.gd" id="1"]
+[ext_resource type="Script" path="res://level_marker.gd" id="2"]
+
+[node name="Level3" type="Node2D"]
+script = ExtResource("1")
+world_size = Vector2(4000, 2400)
+seed_value = 23
+speck_count = 800
+health = true
+
+[node name="Start" type="Node2D" parent="."]
+position = Vector2(400, 1200)
+script = ExtResource("2")
+kind = 0
+
+[node name="GoldenPearl" type="Node2D" parent="."]
+position = Vector2(3500, 1200)
+script = ExtResource("2")
+kind = 1
+size_min = 22.0
+
+[node name="PearlRing" type="Node2D" parent="."]
+position = Vector2(3500, 1200)
+script = ExtResource("2")
+kind = 4
+radius = 360.0
+size_min = 34.0
+gap_angle_deg = 180.0
+gap_width = 110.0
+
+[node name="ToxicMouth" type="Node2D" parent="."]
+position = Vector2(3120, 1200)
+script = ExtResource("2")
+kind = 12
+radius = 170.0
+damage = 14.0
+
+[node name="ToxicPantry1" type="Node2D" parent="."]
+position = Vector2(2000, 550)
+script = ExtResource("2")
+kind = 12
+radius = 260.0
+damage = 10.0
+
+[node name="PantryFood1" type="Node2D" parent="."]
+position = Vector2(2000, 550)
+script = ExtResource("2")
+kind = 8
+radius = 200.0
+count = 40
+
+[node name="ToxicPantry2" type="Node2D" parent="."]
+position = Vector2(1500, 1900)
+script = ExtResource("2")
+kind = 12
+radius = 200.0
+damage = 10.0
+
+[node name="PantryFood2" type="Node2D" parent="."]
+position = Vector2(1500, 1900)
+script = ExtResource("2")
+kind = 8
+radius = 150.0
+count = 30
+
+[node name="StartFood1" type="Node2D" parent="."]
+position = Vector2(650, 700)
+script = ExtResource("2")
+kind = 8
+radius = 180.0
+count = 20
+
+[node name="StartFood2" type="Node2D" parent="."]
+position = Vector2(700, 1750)
+script = ExtResource("2")
+kind = 8
+radius = 180.0
+count = 20
+
+[node name="FoodScatter" type="Node2D" parent="."]
+position = Vector2(2000, 1200)
+script = ExtResource("2")
+kind = 9
+count = 220
+
+[node name="Boulders1" type="Node2D" parent="."]
+position = Vector2(1300, 450)
+script = ExtResource("2")
+kind = 3
+radius = 200.0
+count = 5
+size_min = 28.0
+size_max = 55.0
+
+[node name="Boulders2" type="Node2D" parent="."]
+position = Vector2(1100, 2050)
+script = ExtResource("2")
+kind = 3
+radius = 200.0
+count = 5
+size_min = 28.0
+size_max = 55.0
+
+[node name="Boulders3" type="Node2D" parent="."]
+position = Vector2(2550, 1200)
+script = ExtResource("2")
+kind = 3
+radius = 220.0
+count = 6
+size_min = 28.0
+size_max = 60.0
+
+[node name="Boulders4" type="Node2D" parent="."]
+position = Vector2(2900, 350)
+script = ExtResource("2")
+kind = 3
+radius = 180.0
+count = 4
+size_min = 28.0
+size_max = 50.0
+
+[node name="Boulders5" type="Node2D" parent="."]
+position = Vector2(2900, 2050)
+script = ExtResource("2")
+kind = 3
+radius = 180.0
+count = 4
+size_min = 28.0
+size_max = 50.0
+
+[node name="Krill1" type="Node2D" parent="."]
+position = Vector2(1000, 1200)
+script = ExtResource("2")
+kind = 10
+count = 12
+
+[node name="Krill2" type="Node2D" parent="."]
+position = Vector2(1800, 800)
+script = ExtResource("2")
+kind = 10
+count = 12
+
+[node name="Krill3" type="Node2D" parent="."]
+position = Vector2(2200, 1750)
+script = ExtResource("2")
+kind = 10
+count = 12
+
+[node name="Nipper1" type="Node2D" parent="."]
+position = Vector2(1200, 800)
+script = ExtResource("2")
+kind = 11
+size_min = 15.0
+damage = 20.0
+
+[node name="Nipper2" type="Node2D" parent="."]
+position = Vector2(1100, 1650)
+script = ExtResource("2")
+kind = 11
+size_min = 15.0
+damage = 20.0
+
+[node name="Nipper3" type="Node2D" parent="."]
+position = Vector2(1700, 1300)
+script = ExtResource("2")
+kind = 11
+size_min = 16.0
+damage = 20.0
+
+[node name="Biter1" type="Node2D" parent="."]
+position = Vector2(2300, 900)
+script = ExtResource("2")
+kind = 11
+size_min = 22.0
+damage = 30.0
+
+[node name="Biter2" type="Node2D" parent="."]
+position = Vector2(2300, 1550)
+script = ExtResource("2")
+kind = 11
+size_min = 22.0
+damage = 30.0
+
+[node name="Guard1" type="Node2D" parent="."]
+position = Vector2(2850, 800)
+script = ExtResource("2")
+kind = 11
+size_min = 32.0
+damage = 40.0
+
+[node name="Guard2" type="Node2D" parent="."]
+position = Vector2(2850, 1600)
+script = ExtResource("2")
+kind = 11
+size_min = 32.0
+damage = 40.0
+
+[node name="Guard3" type="Node2D" parent="."]
+position = Vector2(3250, 2050)
+script = ExtResource("2")
+kind = 11
+size_min = 34.0
+damage = 45.0
+

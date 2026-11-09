@@ -1,7 +1,33 @@
-Status: open
+Status: in progress
 Type: prototype
 Blocked by: 02, 03
 
 ## Question
 
 Build a rough, playable prototype validating the core feel: the absorb/grow loop (per [Define core growth & size-comparison rules](03-growth-size-rules.md)), the orbiting Ability/Ammo visual as size grows, and at least one implemented Ability (recommend Dash, since it's least dependent on the full ability-roster ticket) — enough to answer "does the core loop feel good" before committing further design decisions.
+
+## Progress
+
+First rough build exists in `game/main.gd`: mouse steering, ratio-based absorb (1.1x), growth by area, orbiting ammo, dash, krill schools that flee, mid hunters, two Bursaria-style whales that wind up and lunge, a golden orb, and pentatonic notes on absorb. Rules are provisional, so ticket 03 stays open. Not yet judged for feel.
+
+Second build: stage system (a new stage each time size grows 20%; every creature is labeled with the stage you need to eat it; each stage-up triggers slow-motion, a zoom pull-back, a ring and a chord, and the base zoom shrinks 10% per stage), a launch zoom-out intro, solid rock structures, coral-larvae ambush vines, and a 3-key gate puzzle guarding the orb (heavy dash at size 70+ also breaks the gate). All still provisional.
+
+Third build: the Orb is now a "golden pearl" (layered gold sphere, iridescent rim, sparkle particles, burst on eat). Eating any pearl grants one full stage of food and the pearl floats, shrunk, inside the player; three small pearls are hidden around the map and the big one is the goal. Growth is now by Food points (pellet 1, krill 2, larva 6, mid 12, whale 60) on a curve: stage s to s+1 costs 12 * 1.13^(s-1) food, so 15 to 16 costs ~5.5x what 1 to 2 does (about 485 food to reach stage 16). Purple walls = edible at their labeled stage; krill respawn off-screen. All provisional.
+
+Level 2 (started): bigger map (6400x3600), a minefield of white eggs around a small golden pearl (needs stage 4). Touching an egg pops it and releases one fast shrimp; shrimp hunt you while you are stage 4 or below (three touching = devoured, each touching slows you) and are food/flee once you are stage 5+. Camera never zooms out past 98% of the map. Level 1 is frozen. Select levels in the menu with 1/2; N after winning goes to the next.
+
+Level editor: levels 2+ are now Godot scenes (`game/levels/level_2.tscn`) built from `LevelMarker` nodes (`game/level_marker.gd`) under a `LevelDef` root (`game/level_def.gd`: world size, seed, dust count). Open the scene in the Godot editor, drag markers, pick their Kind and numbers in the Inspector. Kinds: Start, Golden Pearl, Rock, Rock Field, Rock Ring, Egg, Egg Field, Food, Food Field, Food Scatter, Krill School, Mid. New level = new scene + one line in `LEVEL_SCENES` in `main.gd`. Level 1 stays code-built (frozen).
+
+Level 3 (health and stage loss): first level with health on (`health = true` on the `LevelDef` root; levels 1 and 2 leave it off and play exactly as before). Map 4000x2400, golden pearl (size 22, needs stage 5) inside a boulder ring whose only gap is covered by a toxic cloud.
+- Health: max health = 40 + 20 per stage (stage 1: 60, stage 5: 140). Stage-up adds the extra capacity on top of your current health (damage you have taken stays). There is no regeneration yet.
+- Display: the membrane ring is the health bar. Full health looks like the normal ring; as health drops the ring thins, dims, turns pink and cracks open in more places (jagged cracks run into the body), and pulses when critical. A hit flashes it red with a spray of sparks. The HUD also shows `Health x/y`.
+- Big bites: on health levels a creature bigger than you no longer swallows you on touch; it bites (MID marker `damage`, default 30), knocks you back, then backs off for 1.4 s and goes after any dropped food. Level 3 has small "nippers" (r 15-16, 20 per bite, prey from stage 3-4), biters (r 22, 30 per bite, prey at stage 5) and big guards (r 32-34, 40-45 per bite, need stage 7, so they stay a threat around the pearl).
+- Slow drain: new `DRAIN` marker, a green-violet toxic cloud that drains `damage` health per second while you are inside. Two of them hold rich food fields (risk vs reward); one covers the pearl ring's gap.
+- Health 0: you drop one stage, restart it at zero food with full health, and get 1.6 s of no damage. Food worth 20% of the climb back (the cost of the lower stage to the old one, at least 3 pellets) bursts out as pale "membrane" pellets that can't be picked up for 0.9 s; you can re-collect them and hunters (mids) eat them too. Banner "STAGE LOST n", falling notes.
+- Stage 1 at health 0: death ("Your membrane burst"), R restarts the level.
+- Test hook: `AMOEBA_HP=<share>` sets health to that share of max on the first frame (e.g. `AMOEBA_HP=0.03` inside a toxic cloud to see a stage loss).
+- Shrimp from eggs still use their old "three at once = devoured" rule on every level.
+
+Level 4 (whale migration, first build): 7600x4200 map, start in the middle. Three giant Bursaria-style whales (mouth ~as tall as the starting screen) take turns every 30 s crossing the whole map, each chasing a fleeing swarm of 45 krill that appears ~5.5 s before the mouth. Whales steer slowly toward you and swallow everything that drifts into the mouth (mids are crushed into food). Krill schools don't respawn, so the whales gradually empty the map. Swallowed: the whale stops and you swim around its belly (you can eat what it swallowed); poking the wriggly belly lining for ~1 s makes it convulse: the hole on top gapes open and a real water current (no scripted teleport) rushes from the belly up through it; ride it and you shoot out and coast on the momentum. One whale (WhaleB) carries the golden pearl (stage 6) in its belly; it glints through the body. Water beside a swimming whale streams back along its flank and curls, the mouth sucks water in, and whales leave swirling eddies in their wake. Water currents exist now (CurrentPath nodes = Godot Path2D curves you draw in the editor). Whales are WHALE markers; LevelDef has whale_interval / first_whale_delay / krill_respawn.
+
+Level 5 (current highway, first build): 14000x8000 map with nine lopsided, interconnected currents (trunk, spurs, loops, one-way shortcuts) that flow faster than you can swim and grip you toward their centre (grip = 68% of your swim speed, so escaping takes a sustained sideways push at any size). Currents push you fully up to stage 10, then fade to ~5% by stage 18 (massive cells barely notice them). Lots of small biters (health on), egg nests, rock rings with food inside, boulder fields, toxic pockets; golden pearl (stage 7) in a vault in the far north-east.

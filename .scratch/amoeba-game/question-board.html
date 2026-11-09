@@ -1,0 +1,184 @@
+<title>Amoeba Game Open Questions</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Atkinson+Hyperlegible:wght@400;700&display=swap">
+<style>
+/* Layout: a microscope slide. Status columns run left to right; each card's colour stripe = which part of the game it touches. */
+:root {
+  --bg: #eef4f3; --panel: #ffffff; --well: #e1ebea; --fg: #10232a; --muted: #557078; --line: #c8d8d8;
+  --accent: #0e7c86; --accent-fg: #ffffff;
+  --t-whale: #2f6fd6; --t-highway: #00938f; --t-health: #d0405a; --t-combat: #c06a12;
+  --t-mine: #7a4fd0; --t-hair: #6a8a12; --t-campaign: #4a5a6a; --t-art: #b8408f; --t-house: #8a7a2a;
+  --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #071419; --panel: #0d2229; --well: #0a1b21; --fg: #dcefee; --muted: #8aa8ad; --line: #1d3a42;
+  --accent: #4cc7cf; --accent-fg: #04161a;
+  --t-whale: #6aa2ff; --t-highway: #3fd0c8; --t-health: #ff7d93; --t-combat: #f0a050;
+  --t-mine: #b08cff; --t-hair: #a9cc45; --t-campaign: #9fb0c0; --t-art: #f080c8; --t-house: #d8c468;
+  color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #071419; --panel: #0d2229; --well: #0a1b21; --fg: #dcefee; --muted: #8aa8ad; --line: #1d3a42;
+  --accent: #4cc7cf; --accent-fg: #04161a;
+  --t-whale: #6aa2ff; --t-highway: #3fd0c8; --t-health: #ff7d93; --t-combat: #f0a050;
+  --t-mine: #b08cff; --t-hair: #a9cc45; --t-campaign: #9fb0c0; --t-art: #f080c8; --t-house: #d8c468;
+  color-scheme: dark }
+
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 15px; line-height: 1.45; }
+.wrap { padding-block: 24px 48px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); max-width: 1500px; margin: 0 auto; display: flex; flex-direction: column; gap: 18px; }
+header { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 12px; }
+h1 { font-family: var(--display); font-weight: 800; font-size: clamp(26px, 4vw, 38px); margin: 0; letter-spacing: -0.01em; text-wrap: balance; }
+.sub { color: var(--muted); margin: 4px 0 0; max-width: 62ch; }
+.counts { font-variant-numeric: tabular-nums; color: var(--muted); font-size: 13px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { --c: var(--muted); font: inherit; font-size: 13px; border: 1.5px solid var(--c); color: var(--fg); background: transparent; border-radius: 999px; padding: 4px 11px 4px 9px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
+.chip::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--c); }
+.chip[aria-pressed="false"] { opacity: 0.45; }
+.chip:focus-visible, button:focus-visible, textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.board { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; align-items: start; }
+@media (max-width: 1100px) { .board { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .board { grid-template-columns: minmax(0, 1fr); } }
+.col { background: var(--well); border-radius: 12px; padding: 12px; display: flex; flex-direction: column; gap: 10px; min-height: 120px; }
+.col.drop { outline: 2px dashed var(--accent); outline-offset: -4px; }
+.col h2 { font-family: var(--display); font-weight: 600; font-size: 16px; margin: 0; display: flex; justify-content: space-between; align-items: baseline; }
+.col h2 span { font-family: var(--body); font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.col .hint { color: var(--muted); font-size: 12.5px; margin: -4px 0 2px; }
+.card { --c: var(--muted); background: var(--panel); border: 1px solid var(--line); border-left: 5px solid var(--c); border-radius: 8px; padding: 10px 11px; display: flex; flex-direction: column; gap: 7px; min-width: 0; }
+.card[draggable="true"] { cursor: grab; }
+.card.dragging { opacity: 0.4; }
+.topic { font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--c); font-weight: 700; }
+.q { font-weight: 700; margin: 0; overflow-wrap: anywhere; }
+.detail { color: var(--muted); font-size: 13.5px; margin: 0; overflow-wrap: anywhere; }
+.rec { font-size: 13.5px; margin: 0; padding: 6px 8px; border-radius: 6px; background: var(--well); overflow-wrap: anywhere; }
+.rec b { color: var(--accent); }
+textarea { font: inherit; font-size: 13.5px; width: 100%; min-height: 54px; resize: vertical; border: 1px solid var(--line); border-radius: 6px; padding: 6px 8px; background: var(--bg); color: var(--fg); }
+.row { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; justify-content: space-between; }
+.moves { display: flex; gap: 4px; flex-wrap: wrap; }
+.mv { font: inherit; font-size: 12px; border: 1px solid var(--line); background: var(--panel); color: var(--fg); border-radius: 6px; padding: 3px 8px; cursor: pointer; }
+.mv:hover { border-color: var(--accent); }
+.saved { font-size: 12px; color: var(--muted); }
+.status { padding: 14px; border-radius: 10px; background: var(--well); color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .card { transition: transform .12s ease; } .card:hover { transform: translateY(-1px); } }
+</style>
+
+<div class="wrap">
+  <header>
+    <div>
+      <h1>Open questions</h1>
+      <p class="sub">Every design question still waiting on a decision. Drag a card (or use its buttons) to move it, and type your answer in the box. Claude reads this board.</p>
+    </div>
+    <div class="counts" id="counts"></div>
+  </header>
+  <div class="chips" id="chips" role="group" aria-label="Filter by part of the game"></div>
+  <div id="status" class="status">Loading the questions…</div>
+  <div class="board" id="board" hidden></div>
+</div>
+
+<script>
+const TOPICS = [
+  ["whale", "Whale level", "--t-whale"], ["highway", "Current highway", "--t-highway"],
+  ["health", "Health & stage loss", "--t-health"], ["combat", "Killing & meat chunks", "--t-combat"],
+  ["mine", "Poison mine & abilities", "--t-mine"], ["hair", "Hairworm vines", "--t-hair"],
+  ["campaign", "Campaign & structure", "--t-campaign"], ["art", "Art, sound & feel", "--t-art"],
+  ["house", "Housekeeping", "--t-house"],
+];
+const COLS = [
+  ["open", "Open", "Not decided yet"],
+  ["leaning", "Leaning", "Has a recommendation, needs your yes or no"],
+  ["decided", "Decided", "Answered; Claude builds from these"],
+  ["later", "Later", "Parked until it matters"],
+];
+const topicOf = Object.fromEntries(TOPICS.map(t => [t[0], t]));
+let cards = [], shown = new Set(TOPICS.map(t => t[0])), db = null, readOnly = false;
+try { const s = JSON.parse(localStorage.getItem("aq-filter") || "null"); if (Array.isArray(s) && s.length) shown = new Set(s); } catch (e) {}
+
+const chips = document.getElementById("chips");
+for (const [id, name, tok] of TOPICS) {
+  const b = document.createElement("button");
+  b.className = "chip"; b.id = "chip-" + id; b.textContent = name;
+  b.style.setProperty("--c", `var(${tok})`);
+  b.setAttribute("aria-pressed", shown.has(id));
+  b.onclick = () => { shown.has(id) ? shown.delete(id) : shown.add(id); b.setAttribute("aria-pressed", shown.has(id)); try { localStorage.setItem("aq-filter", JSON.stringify([...shown])); } catch (e) {} render(); };
+  chips.appendChild(b);
+}
+
+function el(tag, cls, text) { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+
+async function move(id, col) {
+  if (!db || readOnly) return;
+  const c = cards.find(x => x.id === id); if (!c || c.col === col) return;
+  c.col = col; render();
+  try { await db.collection("cards").doc(id).update({ col }); } catch (e) { onWriteError(e); }
+}
+
+const pending = {};
+function saveAnswer(id, text, note) {
+  clearTimeout(pending[id]);
+  pending[id] = setTimeout(async () => {
+    try { await db.collection("cards").doc(id).update({ answer: text }); note.textContent = "Saved"; }
+    catch (e) { onWriteError(e); note.textContent = "Couldn't save"; }
+  }, 700);
+}
+function onWriteError(e) { if (e && e.code === "invalid_argument") { readOnly = true; render(); } }
+
+let dragId = null;
+function render() {
+  const board = document.getElementById("board");
+  board.textContent = "";
+  const counts = {};
+  for (const [cid, cname, chint] of COLS) {
+    const col = el("section", "col"); col.dataset.col = cid;
+    const list = cards.filter(c => c.col === cid && shown.has(c.topic)).sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+    counts[cid] = list.length;
+    const h = el("h2", null, cname); h.appendChild(el("span", null, String(list.length))); col.appendChild(h);
+    col.appendChild(el("p", "hint", chint));
+    col.ondragover = e => { e.preventDefault(); col.classList.add("drop"); };
+    col.ondragleave = () => col.classList.remove("drop");
+    col.ondrop = e => { e.preventDefault(); col.classList.remove("drop"); if (dragId) move(dragId, cid); dragId = null; };
+    for (const c of list) col.appendChild(cardEl(c));
+    board.appendChild(col);
+  }
+  const total = cards.filter(c => c.col !== "decided").length;
+  document.getElementById("counts").textContent = `${total} still open · ${cards.filter(c => c.col === "decided").length} decided`;
+}
+
+function cardEl(c) {
+  const t = topicOf[c.topic] || ["", c.topic || "Other", "--muted"];
+  const card = el("article", "card"); card.style.setProperty("--c", `var(${t[2]})`);
+  if (!readOnly) {
+    card.draggable = true;
+    card.ondragstart = () => { dragId = c.id; card.classList.add("dragging"); };
+    card.ondragend = () => card.classList.remove("dragging");
+  }
+  card.appendChild(el("div", "topic", t[1]));
+  card.appendChild(el("p", "q", c.question || ""));
+  if (c.detail) card.appendChild(el("p", "detail", c.detail));
+  if (c.rec) { const r = el("p", "rec"); const b = el("b", null, "Claude suggests: "); r.appendChild(b); r.appendChild(document.createTextNode(c.rec)); card.appendChild(r); }
+  const ta = el("textarea"); ta.id = "ans-" + c.id; ta.placeholder = "Your answer…"; ta.value = c.answer || ""; ta.setAttribute("aria-label", "Your answer"); ta.readOnly = readOnly;
+  const note = el("span", "saved", "");
+  ta.oninput = () => { note.textContent = "Saving…"; c.answer = ta.value; saveAnswer(c.id, ta.value, note); };
+  card.appendChild(ta);
+  const row = el("div", "row"); const mv = el("div", "moves");
+  if (!readOnly) for (const [cid, cname] of COLS) if (cid !== c.col) { const b = el("button", "mv", "→ " + cname); b.onclick = () => move(c.id, cid); mv.appendChild(b); }
+  row.appendChild(mv); row.appendChild(note); card.appendChild(row);
+  return card;
+}
+
+(async () => {
+  const status = document.getElementById("status");
+  db = await claude.use("db");
+  if (!db) { status.textContent = "This board needs its saved data, which isn't available in this view. Open it on claude.ai while signed in."; return; }
+  const timer = setTimeout(() => { status.textContent = "The questions can't be reached yet. They'll appear when the connection returns."; }, 10000);
+  db.collection("cards").onSnapshot(snap => {
+    if (!snap.metadata.fromCache) clearTimeout(timer);
+    const focused = document.activeElement && document.activeElement.id;
+    cards = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    if (cards.length === 0) { status.hidden = false; status.textContent = "No questions yet. Ask Claude to add the open questions to this board."; document.getElementById("board").hidden = true; return; }
+    status.hidden = true; document.getElementById("board").hidden = false;
+    if (focused && focused.startsWith("ans-")) return; // don't wipe what you're typing
+    render();
+  }, e => { clearTimeout(timer); status.hidden = false; status.textContent = "The questions couldn't be loaded (" + e.code + ")."; });
+})();
+</script>
