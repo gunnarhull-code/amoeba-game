@@ -17,8 +17,11 @@ const MIX := 22050.0
 ## Select the Main node in main.tscn to change it in the Inspector.
 @export var eat_notes := "A3 B3 C4 E4 F4 A4 F4 E4 C4 B3"
 var scale_hz: Array[float] = []
-## Background music, looped on every level. Drag any .mp3 / .ogg / .wav from the FileSystem dock here.
-@export var music: AudioStream = preload("res://music/hirajoshi_shimmer.mp3")
+## Game-wide background music: one setting for the whole game, not per level. Untick Music On to
+## turn it off everywhere.
+@export var music_on := true
+## The track, looped. Drag any .mp3 / .ogg / .wav from the FileSystem dock here.
+@export var music: AudioStream = preload("res://music/hirajoshi_shimmer.ogg")
 ## Music loudness in decibels (0 = full, -10 = quieter, -80 = silent).
 @export_range(-80.0, 6.0) var music_volume_db := -12.0
 var music_player: AudioStreamPlayer
@@ -302,7 +305,7 @@ func _ready() -> void:
 	layer.add_child(red_vig)
 	layer.move_child(red_vig, 1)
 	scale_hz = parse_notes(eat_notes)
-	if music != null:
+	if music_on and music != null:
 		if "loop" in music:
 			music.loop = true  # keeps going level after level, never restarts on a reset
 		music_player = AudioStreamPlayer.new()
@@ -1864,7 +1867,7 @@ func step(delta: float) -> void:
 				th.dead = true
 				food += th.val
 				ammo = mini(ammo + 1, ammo_max)
-				play_note(note(eaten))
+				play_bubble(note(eaten))
 				eaten += 1
 			continue
 		if th.kind == "angler" and th.pearl >= 0 and (th.stun > 0.0 or p_hidden):
@@ -1893,9 +1896,8 @@ func step(delta: float) -> void:
 				continue
 			food += th.val if th.kind == "food" and th.val > 0.0 else FOOD_PTS.get(th.kind, 1.0)
 			ammo = mini(ammo + 1, ammo_max)
-			var hz: float = note(eaten)
+			play_bubble(note(eaten) * 2.0)
 			eaten += 1
-			play_note(hz)
 		elif th.kind != "pearl" and th.r > p_r * EAT and l < th.r * 0.8 and th.stun <= 0.0 and not (th.kind == "larva" and th.st == "attached"):
 			state = "dead"
 			Engine.time_scale = 1.0
@@ -2078,6 +2080,54 @@ func update_whale(th: Thing, delta: float) -> void:
 			th.tmr -= delta
 			if th.tmr <= 0.0:
 				th.st = "roam"
+
+
+func play_bubble(freq: float) -> void:
+	# Pickup sound: a little bubbly note. It walks through the Eat Notes melody an octave up,
+	# with a quick upward pitch blip and a breath of noise, so it sits with the music but
+	# sounds like its own thing.
+	var pl := voices[voice_i]
+	voice_i = (voice_i + 1) % voices.size()
+	pl.play()
+	var pb := pl.get_stream_playback() as AudioStreamGeneratorPlayback
+	if pb == null:
+		return
+	var n := int(MIX * 0.3)
+	var ph := 0.0
+	for i in n:
+		var tt := float(i) / MIX
+		var f := freq * (1.0 - 0.25 * exp(-tt * 70.0))
+		ph += TAU * f / MIX
+		var env := minf(tt / 0.004, 1.0) * exp(-tt * 14.0)
+		var s := (sin(ph) * 0.22 + sin(ph * 2.0) * 0.04 * exp(-tt * 30.0)) * env
+		s += (randf() * 2.0 - 1.0) * 0.03 * exp(-tt * 60.0)
+		pb.push_frame(Vector2(s, s))
+
+
+func play_woosh(bright := 1.0) -> void:
+	# Pickup sound: a tiny soft puff (a very short, narrow sweep of filtered noise), so it never
+	# clashes with the music. Each one is a little different.
+	var pl := voices[voice_i]
+	voice_i = (voice_i + 1) % voices.size()
+	pl.play()
+	var pb := pl.get_stream_playback() as AudioStreamGeneratorPlayback
+	if pb == null:
+		return
+	var n := int(MIX * 0.1)
+	var hi := 1900.0 * bright * randf_range(0.9, 1.1)
+	var lo := 1000.0 * bright * randf_range(0.9, 1.1)
+	var low := 0.0
+	var band := 0.0
+	for i in n:
+		var f := float(i) / n
+		var cut := lerpf(hi, lo, pow(f, 0.6))
+		var fc := 2.0 * sin(PI * cut / MIX)
+		var high := (randf() * 2.0 - 1.0) - low - 0.22 * band
+		band += fc * high
+		low += fc * band
+		var env := f / 0.06 if f < 0.06 else pow((1.0 - f) / 0.94, 3.0)
+		var s := band * env * 0.1
+		pb.push_frame(Vector2(s, s))
 
 
 func play_note(freq: float) -> void:
